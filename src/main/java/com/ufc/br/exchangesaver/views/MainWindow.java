@@ -381,12 +381,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-    
-//    private final StockTableModel stm = new StockTableModel();
-//    private final ExecutionTableModel etm = new ExecutionTableModel();
-//    private final WalletTableModel wtm = new WalletTableModel();
-    
-    private final StockController sc = new StockController();
+     
+    private StockController sc = StockController.getInstance();
     private final ExecutionController ec = new ExecutionController();
     private final WalletController wc = new WalletController();
     

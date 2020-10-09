@@ -14,7 +14,7 @@ import com.ufc.br.exchangesaver.models.StockTableModel;
  */
 public class StockController {
     
-    public StockController() {
+    private StockController() {
         
         this.stm = new StockTableModel();
         
@@ -451,6 +451,11 @@ public class StockController {
         return stm.getFirstRow(0, ticker);
     }
     
-    private final StockTableModel stm;
+    public static StockController getInstance() {
+        return sc;
+    }
+    
+    private StockTableModel stm;
+    private static final StockController sc = new StockController();
     
 }
