@@ -6,7 +6,7 @@
 package com.ufc.br.exchangesaver.views;
 
 import com.ufc.br.exchangesaver.controllers.ExecutionController;
-import com.ufc.br.exchangesaver.controllers.StockController;
+import com.ufc.br.exchangesaver.controllers.StockControllerSingleton;
 import com.ufc.br.exchangesaver.controllers.WalletController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -382,7 +382,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
      
-    private StockController sc = StockController.getInstance();
+    private StockControllerSingleton sc = StockControllerSingleton.getInstance();
     private final ExecutionController ec = new ExecutionController();
     private final WalletController wc = new WalletController();
     

@@ -28,7 +28,7 @@ public class ExecutionController {
         } else if (tickerStr.length() == 0 || typeStr.length() == 0 || valueStr.length() == 0 || qtdStr.length() == 0) {
             throw new Exception("Empty parameter on method add of ExecutionController");
         } else {
-            StockController sc = StockController.getInstance();
+            StockControllerSingleton sc = StockControllerSingleton.getInstance();
             Stock stock = sc.findStock(tickerStr.toUpperCase());
             OrderType type = OrderType.valueOf(typeStr);
             float value = Float.parseFloat(valueStr);

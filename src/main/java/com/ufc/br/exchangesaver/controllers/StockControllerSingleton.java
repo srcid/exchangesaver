@@ -12,9 +12,9 @@ import com.ufc.br.exchangesaver.models.StockTableModel;
  *
  * @author alcid
  */
-public class StockController {
+public class StockControllerSingleton {
     
-    private StockController() {
+    private StockControllerSingleton() {
         
         this.stm = new StockTableModel();
         
@@ -451,11 +451,11 @@ public class StockController {
         return stm.getFirstRow(0, ticker);
     }
     
-    public static StockController getInstance() {
+    public static StockControllerSingleton getInstance() {
         return sc;
     }
     
-    private StockTableModel stm;
-    private static final StockController sc = new StockController();
+    private final StockTableModel stm;
+    private static final StockControllerSingleton sc = new StockControllerSingleton();
     
 }

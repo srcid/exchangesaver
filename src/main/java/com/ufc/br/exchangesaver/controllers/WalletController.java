@@ -30,7 +30,7 @@ public class WalletController {
         } else if (tickerStr.length() <= 0 || qtdStr.length() <= 0) {
             throw new Exception("Empty parameter at addPos method of WalletController");
         } else {
-            StockController sc = StockController.getInstance();
+            StockControllerSingleton sc = StockControllerSingleton.getInstance();
             Stock stock = sc.findStock(tickerStr.toUpperCase());
             int qtd = Integer.parseInt(qtdStr);
             
