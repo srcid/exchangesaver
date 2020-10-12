@@ -10,6 +10,7 @@ import com.ufc.br.exchangesaver.controllers.StockControllerSingleton;
 import com.ufc.br.exchangesaver.controllers.WalletController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -34,6 +35,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroupExecution = new javax.swing.ButtonGroup();
+        execTablePopupMenu = new javax.swing.JPopupMenu();
+        remExecRowItem = new javax.swing.JMenuItem();
+        editExecRowItem = new javax.swing.JMenuItem();
+        walletTablePopupMenu = new javax.swing.JPopupMenu();
+        remPosRowItem = new javax.swing.JMenuItem();
+        editPosRowItem = new javax.swing.JMenuItem();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
@@ -60,9 +67,34 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableStocks = new javax.swing.JTable();
 
+        remExecRowItem.setText("Remover");
+        remExecRowItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remExecRowItemActionPerformed(evt);
+            }
+        });
+        execTablePopupMenu.add(remExecRowItem);
+
+        editExecRowItem.setText("Editar");
+        execTablePopupMenu.add(editExecRowItem);
+
+        remPosRowItem.setText("Remover");
+        remPosRowItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remPosRowItemActionPerformed(evt);
+            }
+        });
+        walletTablePopupMenu.add(remPosRowItem);
+
+        editPosRowItem.setText("Editar");
+        walletTablePopupMenu.add(editPosRowItem);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ExchangeSaver");
+        setIconImage(imageIcon.getImage());
 
         jTable1.setModel(this.ec.getTableModel());
+        jTable1.setComponentPopupMenu(execTablePopupMenu);
         jScrollPane1.setViewportView(jTable1);
 
         jTextFieldTicker.setTransferHandler(null);
@@ -75,6 +107,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2.setText("Tiquete");
 
         buttonGroupExecution.add(jRadioButtonBuy);
+        jRadioButtonBuy.setSelected(true);
         jRadioButtonBuy.setText("Compra");
 
         buttonGroupExecution.add(jRadioButtonSell);
@@ -156,6 +189,7 @@ public class MainWindow extends javax.swing.JFrame {
         jTabbedPane2.addTab("Execuções", jPanel5);
 
         jTable2.setModel(this.wc.getTableModel());
+        jTable2.setComponentPopupMenu(walletTablePopupMenu);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel5.setText("Ação");
@@ -347,6 +381,26 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField5KeyTyped
 
+    private void remExecRowItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remExecRowItemActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        try {
+            ec.rem(selectedRow);
+        } catch (Exception ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_remExecRowItemActionPerformed
+
+    private void remPosRowItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remPosRowItemActionPerformed
+        int selectedRow = jTable2.getSelectedRow();
+        
+        try {
+            wc.remPos(selectedRow);
+        } catch (Exception ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_remPosRowItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,14 +436,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
      
-    private StockControllerSingleton sc = StockControllerSingleton.getInstance();
+    private final StockControllerSingleton sc = StockControllerSingleton.getInstance();
     private final ExecutionController ec = new ExecutionController();
     private final WalletController wc = new WalletController();
+    private final ImageIcon imageIcon = new ImageIcon("images\\icon.png");
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addExecutionBtn;
     private javax.swing.JButton addPosBtn;
     private javax.swing.ButtonGroup buttonGroupExecution;
+    private javax.swing.JMenuItem editExecRowItem;
+    private javax.swing.JMenuItem editPosRowItem;
+    private javax.swing.JPopupMenu execTablePopupMenu;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -414,5 +472,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTicker;
 
     private javax.swing.JTextField jTextFieldValue;
+    private javax.swing.JMenuItem remExecRowItem;
+    private javax.swing.JMenuItem remPosRowItem;
+    private javax.swing.JPopupMenu walletTablePopupMenu;
     // End of variables declaration//GEN-END:variables
 }

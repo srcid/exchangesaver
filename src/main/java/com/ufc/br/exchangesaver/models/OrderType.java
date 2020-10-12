@@ -11,8 +11,8 @@ package com.ufc.br.exchangesaver.models;
  */
 public enum OrderType {
     
-    SELL ("Selling order"),
-    BUY ("Buying order");
+    SELL ("Venda"),
+    BUY ("Compra");
     
     private final String desc;
     
